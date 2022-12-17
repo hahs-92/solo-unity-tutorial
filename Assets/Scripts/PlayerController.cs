@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Components")]
+    private Animator anim;
+    private SpriteRenderer sr;
     public Rigidbody2D myBody;
 
     [Header("Player variables")]
@@ -21,7 +23,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim = GetComponent<Animator>();  
+        sr = GetComponent<SpriteRenderer>();
     }
 
 
@@ -30,6 +33,17 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         Jump();
+
+        anim.SetFloat("moveSpeed", Mathf.Abs(myBody.velocity.x));
+        anim.SetBool("isGrounded", isGrounded);
+
+        if(myBody.velocity.x > 0)
+        {
+            sr.flipX= false;
+        } else if(myBody.velocity.x < 0)
+        {
+            sr.flipX= true;
+        }
         
     }
 
@@ -63,3 +77,4 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
+
