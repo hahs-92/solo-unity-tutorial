@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
     [Header("Components")]
     private Animator anim;
     private SpriteRenderer sr;
@@ -19,6 +21,14 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheckPoint;
     public LayerMask whatIsGround;
 
+    private float knockBackCounter;
+    public float knockBackLength, knockBackForce;
+
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -41,8 +51,14 @@ public class PlayerController : MonoBehaviour
 
     public void Move()
     {
-        // vector2 recibe dos paramtros, el ejex y el ejey
-        myBody.velocity = new Vector2(moveSpeed * Input.GetAxisRaw("Horizontal"), myBody.velocity.y);
+        if(knockBackCounter <= 0)
+        {
+            // vector2 recibe dos paramtros, el ejex y el ejey
+            myBody.velocity = new Vector2(moveSpeed * Input.GetAxisRaw("Horizontal"), myBody.velocity.y);
+        } else
+        {
+            knockBackCounter -= Time.deltaTime;
+        }
     }
 
     public void Jump()
@@ -79,6 +95,20 @@ public class PlayerController : MonoBehaviour
         {
             sr.flipX = true;
         }
+    }
+
+    public void KnockBack()
+    {
+        knockBackCounter = knockBackLength;
+       
+        if(sr.flipX)
+        {
+            myBody.velocity = new Vector2(knockBackForce, myBody.velocity.y);
+        } else
+        {
+            myBody.velocity = new Vector2(-knockBackForce, myBody.velocity.y);
+        }
+
     }
 }
 
