@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
 
     [Header("Components")]
-    private Animator anim;
+    public Animator anim;
     private SpriteRenderer sr;
     public Rigidbody2D myBody;
 
