@@ -31,20 +31,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Jump();
-
         anim.SetFloat("moveSpeed", Mathf.Abs(myBody.velocity.x));
         anim.SetBool("isGrounded", isGrounded);
 
-        if(myBody.velocity.x > 0)
-        {
-            sr.flipX= false;
-        } else if(myBody.velocity.x < 0)
-        {
-            sr.flipX= true;
-        }
-        
+        Move();
+        Jump();
+        FlipXController();
     }
 
     public void Move()
@@ -74,6 +66,18 @@ public class PlayerController : MonoBehaviour
                 myBody.velocity = new Vector2(myBody.velocity.x, jumpFource);
                 canDoubleJump= false;
             }
+        }
+    }
+
+    public void FlipXController()
+    {
+        if (myBody.velocity.x > 0)
+        {
+            sr.flipX = false;
+        }
+        else if (myBody.velocity.x < 0)
+        {
+            sr.flipX = true;
         }
     }
 }
