@@ -8,11 +8,12 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D myBody;
 
     [Header("Player variables")]
+    private bool canDoubleJump;
     public float moveSpeed;
     public float jumpFource;
 
     [Header("Grounded")]
-    private bool isGround;
+    private bool isGrounded;
     public Transform groundCheckPoint;
     public LayerMask whatIsGround;
 
@@ -42,11 +43,23 @@ public class PlayerController : MonoBehaviour
     {
 
         // creamos un circulo, para que detecte la layer del piso
-        isGround = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
 
-        if (Input.GetButtonDown("Jump") && isGround)
+        if(isGrounded )
         {
-            myBody.velocity = new Vector2(myBody.velocity.x, jumpFource);
+            canDoubleJump = true;
+        } 
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            if(isGrounded)
+            {
+                myBody.velocity = new Vector2(myBody.velocity.x, jumpFource);
+            } else if(canDoubleJump)
+            {
+                myBody.velocity = new Vector2(myBody.velocity.x, jumpFource);
+                canDoubleJump= false;
+            }
         }
     }
 }
