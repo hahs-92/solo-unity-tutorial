@@ -63,7 +63,6 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-
         // creamos un circulo, para que detecte la layer del piso
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, .2f, whatIsGround);
 
@@ -108,7 +107,6 @@ public class PlayerController : MonoBehaviour
         {
             myBody.velocity = new Vector2(-knockBackForce, myBody.velocity.y);
         }
-
     }
 }
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerHealthController : MonoBehaviour
 {
-
     public static PlayerHealthController instance;
 
     private SpriteRenderer sr;
@@ -61,5 +60,15 @@ public class PlayerHealthController : MonoBehaviour
 
             UIController.instance.UpdateHealthDisplay();
         }
+    }
+
+    public void HealPlayer()
+    {
+        currentHealth++;
+        if(currentHealth > maxHealth) {
+            currentHealth = maxHealth;
+        }
+
+        UIController.instance.UpdateHealthDisplay();
     }
 }

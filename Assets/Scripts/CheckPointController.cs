@@ -22,12 +22,6 @@ public class CheckPointController : MonoBehaviour
         spawnPoint = PlayerController.instance.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-      
-    }
-
     public void DeactiveCheckPoints()
     {
         for(int i = 0; i < checkPoints.Length; i++)

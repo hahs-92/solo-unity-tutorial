@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-
     public SpriteRenderer sr;
     public Sprite checkPointOn, checkPointOff;
-
 
     public void OnTriggerEnter2D(Collider2D other)
     {

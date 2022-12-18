@@ -5,22 +5,15 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
+
+    // tiempo de espera antes que aparesca el player
     public float waitToRespawn;
+    // numero de gemas recolecatdas por el player
+    public int gemsCollected;
 
     private void Awake()
     {
         instance = this;
-    }
-
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void RespawnPlayer()
