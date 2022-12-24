@@ -29,8 +29,12 @@ public class LevelManager : MonoBehaviour
         PlayerController.instance.gameObject.SetActive(false);
         yield return new WaitForSeconds(waitToRespawn);
 
+        // instanciamos al jugador
         PlayerController.instance.gameObject.SetActive(true);
         PlayerController.instance.transform.position = CheckPointController.instance.spawnPoint;
+        // actualizamos los puntos d evida
         PlayerHealthController.instance.currentHealth = PlayerHealthController.instance.maxHealth;
+        //actualzamos la UI
+        UIController.instance.UpdateHealthDisplay();
     }
 }

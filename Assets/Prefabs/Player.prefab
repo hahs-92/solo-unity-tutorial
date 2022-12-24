@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518afa9bf0e458245b276fc49aa4da4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   myBody: {fileID: 5228139514858093326}
   moveSpeed: 6
   jumpFource: 6
@@ -198,7 +199,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   knockBackLength: 0.25
-  knockBackForce: 1
+  knockBackForce: 2
 --- !u!114 &5043649600229567322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddd3c9b02478ca74199774f08cf97ba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathEffect: {fileID: 6947900857668090773, guid: 919b6f0244e034040a16493bfb56bd97, type: 3}
   currentHealth: 6
   maxHealth: 6
   invincibleLength: 2
