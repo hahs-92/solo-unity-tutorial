@@ -268,7 +268,7 @@ MonoBehaviour:
   anim: {fileID: 5228139514858093322}
   myBody: {fileID: 5228139514858093326}
   moveSpeed: 6
-  jumpFource: 6
+  jumpFource: 5
   bounceForce: 5
   groundCheckPoint: {fileID: 5228139513832466413}
   whatIsGround:
@@ -276,6 +276,7 @@ MonoBehaviour:
     m_Bits: 512
   knockBackLength: 0.25
   knockBackForce: 2
+  stopInput: 0
 --- !u!114 &5043649600229567322
 MonoBehaviour:
   m_ObjectHideFlags: 0

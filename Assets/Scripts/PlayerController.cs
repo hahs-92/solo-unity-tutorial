@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
     private float knockBackCounter;
     public float knockBackLength, knockBackForce;
+    public bool stopInput;
 
 
     private void Awake()
@@ -46,7 +47,8 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isGrounded", isGrounded);
 
         // solo se podra mover, si el juego no esta pausado
-        if(!PauseMenu.instance.isPaused)
+        // stopInput se vuelve true cuando toca la bandera
+        if(!PauseMenu.instance.isPaused && !stopInput)
         {
             Move();
             Jump();

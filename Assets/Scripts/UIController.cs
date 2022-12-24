@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
     public Image heart1, heart2, heart3, fadeScreen;
     public Sprite heartFull, heartHalf, heartEmpty;
     public TextMeshProUGUI gemTextCounter;
+    public GameObject levelCompletText;
 
     public float fadeSpeed;
     private bool shouldFadeToBack, shouldFadeFromBlack;

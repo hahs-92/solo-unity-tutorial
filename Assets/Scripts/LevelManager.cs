@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class LevelManager : MonoBehaviour
     public float waitToRespawn;
     // numero de gemas recolecatdas por el player
     public int gemsCollected;
+    public string levelToLoad;
 
     private void Awake()
     {
@@ -39,5 +42,23 @@ public class LevelManager : MonoBehaviour
         PlayerHealthController.instance.currentHealth = PlayerHealthController.instance.maxHealth;
         //actualzamos la UI
         UIController.instance.UpdateHealthDisplay();
+    }
+
+    public void EndLevel()
+    {
+        StartCoroutine(EndLevelCoroutine());
+    }
+
+    public IEnumerator EndLevelCoroutine()
+    {
+        PlayerController.instance.stopInput = true;
+        // la camara deja de seguir al jugador
+        CameraController.instance.stopFollow = true;
+        // mostramos el mensage de completado
+        UIController.instance.levelCompletText.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
+        UIController.instance.FadeToBlack();
+        yield return new WaitForSeconds((1f / UIController.instance.fadeSpeed) + .25f);
+        SceneManager.LoadScene(levelToLoad);
     }
 }
