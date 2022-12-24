@@ -20,7 +20,7 @@ public class Pickup : MonoBehaviour
                 UIController.instance.UpdateGemCount();
                 // instanciamos el effect de collected
                 Instantiate(pickUpEffect, transform.position, transform.rotation);
-
+                AudioManager.instance.PlaySFX(6);
                 isCollected= true;
                 Destroy(gameObject);
             } 
@@ -30,6 +30,7 @@ public class Pickup : MonoBehaviour
                 if(PlayerHealthController.instance.currentHealth != PlayerHealthController.instance.maxHealth)
                 {
                     PlayerHealthController.instance.HealPlayer();
+                    AudioManager.instance.PlaySFX(6);
                     isCollected = true;
                     Destroy(gameObject);
                 }

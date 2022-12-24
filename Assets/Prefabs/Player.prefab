@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 518afa9bf0e458245b276fc49aa4da4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
+  anim: {fileID: 5228139514858093322}
   myBody: {fileID: 5228139514858093326}
   moveSpeed: 6
   jumpFource: 6
