@@ -45,9 +45,14 @@ public class PlayerController : MonoBehaviour
         anim.SetFloat("moveSpeed", Mathf.Abs(myBody.velocity.x));
         anim.SetBool("isGrounded", isGrounded);
 
-        Move();
-        Jump();
-        FlipXController();
+        // solo se podra mover, si el juego no esta pausado
+        if(!PauseMenu.instance.isPaused)
+        {
+            Move();
+            Jump();
+            FlipXController();
+        }
+
     }
 
     public void Move()
