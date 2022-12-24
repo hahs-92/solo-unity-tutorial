@@ -22,7 +22,6 @@ public class PauseMenu : MonoBehaviour
         // escape 
         if(Input.GetButtonDown("Menu"))
         {
-            Debug.Log("puased");
             PauseUnPause();
         }
         

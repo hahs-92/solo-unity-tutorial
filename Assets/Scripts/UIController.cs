@@ -8,9 +8,12 @@ public class UIController : MonoBehaviour
 {
     public static UIController instance;
 
-    public Image heart1, heart2, heart3;
+    public Image heart1, heart2, heart3, fadeScreen;
     public Sprite heartFull, heartHalf, heartEmpty;
     public TextMeshProUGUI gemTextCounter;
+
+    public float fadeSpeed;
+    private bool shouldFadeToBack, shouldFadeFromBlack;
 
     private void Awake()
     {
@@ -20,6 +23,32 @@ public class UIController : MonoBehaviour
     private void Start()
     {
         UpdateGemCount();
+        FadeFromBlack();
+    }
+
+    private void Update()
+    {
+        if(shouldFadeToBack)
+        {
+            // MoveToFowards hace que se mueva lentamente
+            fadeScreen.color = new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, Mathf.MoveTowards(fadeScreen.color.a, 1f, fadeSpeed * Time.deltaTime));
+
+            if(fadeScreen.color.a == 1f)
+            {
+                shouldFadeToBack = false;
+            }
+        }
+
+        if (shouldFadeFromBlack)
+        {
+            // MoveToFowards hace que se mueva lentamente
+            fadeScreen.color = new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, Mathf.MoveTowards(fadeScreen.color.a, 0f, fadeSpeed * Time.deltaTime));
+
+            if (fadeScreen.color.a == 0f)
+            {
+                shouldFadeFromBlack = false;
+            }
+        }
     }
 
     public void UpdateHealthDisplay()
@@ -72,5 +101,17 @@ public class UIController : MonoBehaviour
     public void UpdateGemCount()
     {
         gemTextCounter.text = LevelManager.instance.gemsCollected.ToString();
+    }
+
+    public void FadeToBlack()
+    {
+        shouldFadeToBack = true;
+        shouldFadeFromBlack = false;
+    }
+
+    public void FadeFromBlack()
+    {
+        shouldFadeFromBlack = true;
+        shouldFadeToBack = false;
     }
 }

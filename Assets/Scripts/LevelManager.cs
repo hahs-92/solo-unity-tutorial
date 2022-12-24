@@ -27,7 +27,10 @@ public class LevelManager : MonoBehaviour
         // y por ultimo activa nuevamente el player, en la posicion 
         // guardada en el checkpoint
         PlayerController.instance.gameObject.SetActive(false);
-        yield return new WaitForSeconds(waitToRespawn);
+        yield return new WaitForSeconds(waitToRespawn - (1f / UIController.instance.fadeSpeed));
+        UIController.instance.FadeToBlack();
+        yield return new WaitForSeconds((1f / UIController.instance.fadeSpeed) + .2f);
+        UIController.instance.FadeFromBlack();
 
         // instanciamos al jugador
         PlayerController.instance.gameObject.SetActive(true);
