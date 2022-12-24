@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool canDoubleJump;
     public float moveSpeed;
     public float jumpFource;
+    public float bounceForce;
 
     [Header("Grounded")]
     private bool isGrounded;
@@ -107,6 +108,12 @@ public class PlayerController : MonoBehaviour
         {
             myBody.velocity = new Vector2(-knockBackForce, myBody.velocity.y);
         }
+    }
+
+    // para que el player salye cuando golpee a un enemy
+    public void Bounce()
+    {
+        myBody.velocity = new Vector2(myBody.velocity.x, bounceForce);
     }
 }
 
