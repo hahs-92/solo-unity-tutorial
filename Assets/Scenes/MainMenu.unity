@@ -858,7 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f6a48b91c8ea5f4e985ea0e643d827a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startScene: Level
+  startScene: Level1
 --- !u!114 &2103331747
 MonoBehaviour:
   m_ObjectHideFlags: 0

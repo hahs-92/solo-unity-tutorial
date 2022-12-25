@@ -102,3 +102,4 @@ MonoBehaviour:
   middleBG: {fileID: 0}
   minHeight: -1.5
   maxHeight: 2.5
+  stopFollow: 0
