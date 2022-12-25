@@ -14,7 +14,7 @@ public class UIController : MonoBehaviour
     public GameObject levelCompletText;
 
     public float fadeSpeed;
-    private bool shouldFadeToBack, shouldFadeFromBlack;
+    private bool shouldFadeToBlack, shouldFadeFromBlack;
 
     private void Awake()
     {
@@ -29,14 +29,14 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        if(shouldFadeToBack)
+        if(shouldFadeToBlack)
         {
             // MoveToFowards hace que se mueva lentamente
             fadeScreen.color = new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, Mathf.MoveTowards(fadeScreen.color.a, 1f, fadeSpeed * Time.deltaTime));
 
             if(fadeScreen.color.a == 1f)
             {
-                shouldFadeToBack = false;
+                shouldFadeToBlack = false;
             }
         }
 
@@ -106,13 +106,13 @@ public class UIController : MonoBehaviour
 
     public void FadeToBlack()
     {
-        shouldFadeToBack = true;
+        shouldFadeToBlack = true;
         shouldFadeFromBlack = false;
     }
 
     public void FadeFromBlack()
     {
         shouldFadeFromBlack = true;
-        shouldFadeToBack = false;
+        shouldFadeToBlack = false;
     }
 }

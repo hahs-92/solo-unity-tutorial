@@ -2882,6 +2882,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2777846719865072979, guid: f76cb3e4fc75ba949a99ace871014776, type: 3}
+      propertyPath: levelSelect
+      value: LevelSelect
+      objectReference: {fileID: 0}
     - target: {fileID: 4619830734409882143, guid: f76cb3e4fc75ba949a99ace871014776, type: 3}
       propertyPath: m_Name
       value: LevelPack
