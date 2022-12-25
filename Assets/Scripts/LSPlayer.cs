@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// para que el jugador se mueva entre el mapa
 public class LSPlayer : MonoBehaviour
 {
+    // una referencia a esa clase para
+    // cargar un nivel, cuando el player este 
+    // en el mapa
+    public LSManager lsManager;
+
     public MapPoint currentPoint;
     public float moveSpeed = 10f;
-
+    public bool levelLoading;
 
     void Start()
     {
@@ -50,6 +56,15 @@ public class LSPlayer : MonoBehaviour
                 if (currentPoint.down != null)
                 {
                     SetNextPoint(currentPoint.down);
+                }
+            }
+
+            if(currentPoint.isLevel)
+            {
+                if(Input.GetButtonDown("Jump"))
+                {
+                    levelLoading= true;
+                    lsManager.LoadLevel();
                 }
             }
         }

@@ -29,6 +29,10 @@ public class CameraController : MonoBehaviour
         if(!stopFollow)
         {
             // transform.position = new Vector3(target.position.x , transform.position.y , transform.position.z);
+            //! CLAMP => Restringir
+            // dado 5 value, 10 min, 15 max => 10
+            // dado 16 value, 10 min, 15 max => 15
+            // dado 12 value, 10 min, 15 max => 12
 
             transform.position = new Vector3(target.position.x, Mathf.Clamp(target.position.y, minHeight, maxHeight), transform.position.z);
             Vector2 amountToMove = new Vector2(transform.position.x - lastPos.x, transform.position.y - lastPos.y);
