@@ -87,7 +87,6 @@ public class LSUIManager : MonoBehaviour
             // F2 muestra dos decimales
             bestTime.text = "BEST: " + levelInfo.bestTime.ToString("F2") + "s";
         }
-
     }
 
     public void HideInfo()

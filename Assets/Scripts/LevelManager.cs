@@ -57,6 +57,7 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator EndLevelCoroutine()
     {
+        AudioManager.instance.PlayLevelVictory();
         PlayerController.instance.stopInput = true;
         // la camara deja de seguir al jugador
         CameraController.instance.stopFollow = true;
@@ -69,6 +70,9 @@ public class LevelManager : MonoBehaviour
         // guardamos la info que el nivel fue pasado, para despbloquear el siguiente nivel
         // esta info la utilizamos en MapPoint
         PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_unlocked", 1);
+
+        //guardamos el nombre del nivel que pasamos
+        PlayerPrefs.SetString("CurrentLevel", SceneManager.GetActiveScene().name);
 
         if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "_gems"))
         {

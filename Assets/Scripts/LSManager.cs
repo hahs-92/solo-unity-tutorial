@@ -9,6 +9,26 @@ public class LSManager : MonoBehaviour
     // accedemos a su script
     public LSPlayer thePlayer;
 
+    //puntos en el mapa
+    private MapPoint[] allPoints;
+
+
+    private void Start()
+    {
+        allPoints = FindObjectsOfType<MapPoint>();
+
+        if(PlayerPrefs.HasKey("CurrentLevel"))
+        {
+            foreach(MapPoint point in allPoints)
+            {
+                if(point.levelToLoad == PlayerPrefs.GetString("CurrentLevel"))
+                {
+                    thePlayer.transform.position = point.transform.position;
+                    thePlayer.currentPoint= point;
+                }
+            }
+        }
+    }
 
     public void LoadLevel()
     {

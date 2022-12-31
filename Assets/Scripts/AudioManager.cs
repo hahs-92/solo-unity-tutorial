@@ -22,4 +22,12 @@ public class AudioManager : MonoBehaviour
         soundEffects[soundToPlay].pitch = Random.Range(.9f, 1.1f);
         soundEffects[soundToPlay].Play();
     }
+
+    // cuando finalize el game 
+    // lo llamamos desde levelManager
+    public void PlayLevelVictory()
+    {
+        bgm.Stop();
+        levelEndMusic.Play();
+    }
 }
