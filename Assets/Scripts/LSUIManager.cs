@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LSUIManager : MonoBehaviour
 {
-    // 4:55:18 continuamos con bloquear los niveles
     public static LSUIManager instance;
 
     public Image fadeScreen;
 
     public float fadeSpeed;
     private bool shouldFadeToBlack, shouldFadeFromBlack;
+
+    // panel que se muestra cuando el jugador elige nivel
+    public GameObject levelInfoPanel;
+    public TextMeshProUGUI levelName;
 
     void Awake()
     {
@@ -59,5 +63,19 @@ public class LSUIManager : MonoBehaviour
     {
         shouldFadeFromBlack = true;
         shouldFadeToBlack = false;
+    }
+
+    public void ShowInfo(MapPoint levelInfo)
+    {
+        // asignamos el nombre de la escena al texto del panel
+        // que muestra el nombre del nivel
+        levelName.text = levelInfo.levelName;
+        //mostramos el panel
+        levelInfoPanel.SetActive(true);
+    }
+
+    public void HideInfo()
+    {
+        levelInfoPanel.SetActive(false);
     }
 }

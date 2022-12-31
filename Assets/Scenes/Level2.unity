@@ -4479,7 +4479,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2777846718818641208, guid: f76cb3e4fc75ba949a99ace871014776, type: 3}
       propertyPath: levelToLoad
-      value: Level3
+      value: LevelSelect
       objectReference: {fileID: 0}
     - target: {fileID: 2777846719865072968, guid: f76cb3e4fc75ba949a99ace871014776, type: 3}
       propertyPath: m_IsActive

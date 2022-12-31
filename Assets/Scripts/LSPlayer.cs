@@ -59,8 +59,14 @@ public class LSPlayer : MonoBehaviour
                 }
             }
 
-            if(currentPoint.isLevel)
+            // si el nivel no asignado "", no cargamos nada
+            if(currentPoint.isLevel && currentPoint.levelToLoad != "" && !currentPoint.isLocked)
             {
+                //cuando el player este sobre el nivel
+                // se mostrara el panel con el nombre del nivel
+                Debug.Log(currentPoint.levelName);
+                LSUIManager.instance.ShowInfo(currentPoint);
+
                 if(Input.GetButtonDown("Jump"))
                 {
                     levelLoading= true;
@@ -74,5 +80,6 @@ public class LSPlayer : MonoBehaviour
     public void SetNextPoint(MapPoint nextPoint)
     {
         currentPoint = nextPoint;
+        LSUIManager.instance.HideInfo();
     }
 }

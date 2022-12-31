@@ -59,6 +59,10 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         UIController.instance.FadeToBlack();
         yield return new WaitForSeconds((1f / UIController.instance.fadeSpeed) + .25f);
+
+        // guardamos la info que el nivel fue pasado, para despbloquear el siguiente nivel
+        // esta info la utilizamos en MapPoint
+        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_unlocked", 1);
         SceneManager.LoadScene(levelToLoad);
     }
 }
