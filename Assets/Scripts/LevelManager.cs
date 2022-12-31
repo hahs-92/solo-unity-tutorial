@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
 
     // tiempo de espera antes que aparesca el player
-    public float waitToRespawn;
+    public float waitToRespawn, timeInLevel;
     // numero de gemas recolecatdas por el player
     public int gemsCollected;
     public string levelToLoad;
@@ -17,6 +17,12 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        timeInLevel = 0f;
+    }
+
+    private void Update()
+    {
+        timeInLevel += Time.deltaTime;
     }
 
     public void RespawnPlayer()
@@ -63,6 +69,23 @@ public class LevelManager : MonoBehaviour
         // guardamos la info que el nivel fue pasado, para despbloquear el siguiente nivel
         // esta info la utilizamos en MapPoint
         PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_unlocked", 1);
+
+        if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "_gems"))
+        {
+            gemsCollected = PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_gems") > gemsCollected 
+                ? PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "_gems") 
+                : gemsCollected;
+        }
+
+        if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "_time"))
+        {
+            timeInLevel = PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + "_time") < timeInLevel
+                ? PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + "_time")
+                : timeInLevel;
+        }
+
+        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "_gems", gemsCollected);
+        PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "_time", timeInLevel);
         SceneManager.LoadScene(levelToLoad);
     }
 }

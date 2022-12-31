@@ -10,37 +10,71 @@ public class MapPoint : MonoBehaviour
     // la cual ya debio ser pasada para ´poder seguir
     public string levelToLoad, levelToCheck, levelName;
 
+    public int gemsCollected, totalGems;
+    public float bestTime, targetTime;
+
+    // la gema y el reloj que aparece cuando
+    // se consigue el mejor tiempo y todas las gemas
+    public GameObject gemBadge, timeBadge;
+
     void Start()
     {
         if (isLevel && levelToLoad != null)
         {
-            isLocked = true;
-
-            if (levelToCheck != null)
-            {
-                // estas preferencias fueron guardadas desde LevelManager
-                // cuando el jugador termina un nivel
-                if (PlayerPrefs.HasKey(levelToCheck + "_unlocked"))
-                {
-                    if (PlayerPrefs.GetInt(levelToCheck + "_unlocked") == 1)
-                    {
-                        isLocked = false;
-                    }
-                }
-            }
-
-            // cuando inicia el primer nivel, va estar desbloqueado
-            if (levelToLoad == levelToCheck)
-            {
-                isLocked = false;
-            }
+            CheckPlayerPrefs();
+            ShowBadges();
+            CheckLevelToUnlocked();
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void CheckPlayerPrefs()
     {
-        
+        if (PlayerPrefs.HasKey(levelToLoad + "_gems"))
+        {
+            gemsCollected = PlayerPrefs.GetInt(levelToLoad + "_gems");
+        }
+
+        if (PlayerPrefs.HasKey(levelToLoad + "_time"))
+        {
+            bestTime = PlayerPrefs.GetFloat(levelToLoad + "_time");
+        }
+    }
+
+    private void CheckLevelToUnlocked()
+    {
+        isLocked = true;
+
+        if (levelToCheck != null)
+        {
+            // estas preferencias fueron guardadas desde LevelManager
+            // cuando el jugador termina un nivel
+            if (PlayerPrefs.HasKey(levelToCheck + "_unlocked"))
+            {
+                if (PlayerPrefs.GetInt(levelToCheck + "_unlocked") == 1)
+                {
+                    isLocked = false;
+                }
+            }
+        }
+
+        // cuando inicia el primer nivel, va estar desbloqueado
+        if (levelToLoad == levelToCheck)
+        {
+            isLocked = false;
+        }
+    }
+
+    private void ShowBadges()
+    {
+        if (gemsCollected >= totalGems)
+        {
+            gemBadge.SetActive(true);
+        }
+
+        if (bestTime <= targetTime && bestTime != 0)
+        {
+            timeBadge.SetActive(true);
+        }
     }
 
    

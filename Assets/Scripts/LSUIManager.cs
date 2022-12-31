@@ -15,7 +15,7 @@ public class LSUIManager : MonoBehaviour
 
     // panel que se muestra cuando el jugador elige nivel
     public GameObject levelInfoPanel;
-    public TextMeshProUGUI levelName;
+    public TextMeshProUGUI levelName, gemsFound, gemsTarget, bestTime, timeTarget;
 
     void Awake()
     {
@@ -72,6 +72,22 @@ public class LSUIManager : MonoBehaviour
         levelName.text = levelInfo.levelName;
         //mostramos el panel
         levelInfoPanel.SetActive(true);
+
+        gemsFound.text = "FOUND: " + levelInfo.gemsCollected;
+        gemsTarget.text = "IN LEVEL: " + levelInfo.totalGems;
+
+        timeTarget.text = "TARGET: " + levelInfo.targetTime + "s";
+
+        if(levelInfo.bestTime == 0)
+        {
+            bestTime.text = "BEST ---";
+        }
+        else
+        {
+            // F2 muestra dos decimales
+            bestTime.text = "BEST: " + levelInfo.bestTime.ToString("F2") + "s";
+        }
+
     }
 
     public void HideInfo()

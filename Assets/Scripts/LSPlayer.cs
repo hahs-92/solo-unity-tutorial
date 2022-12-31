@@ -64,7 +64,6 @@ public class LSPlayer : MonoBehaviour
             {
                 //cuando el player este sobre el nivel
                 // se mostrara el panel con el nombre del nivel
-                Debug.Log(currentPoint.levelName);
                 LSUIManager.instance.ShowInfo(currentPoint);
 
                 if(Input.GetButtonDown("Jump"))
