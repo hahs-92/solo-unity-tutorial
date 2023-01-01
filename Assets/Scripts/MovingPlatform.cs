@@ -9,12 +9,8 @@ public class MovingPlatform : MonoBehaviour
 
     public float moveSpeed;
     public int currentPoint;
-    void Start()
-    {
-        
-    }
+ 
 
-    // Update is called once per frame
     void Update()
     {
         platform.position = Vector3.MoveTowards(platform.position, points[currentPoint].position, moveSpeed * Time.deltaTime);
