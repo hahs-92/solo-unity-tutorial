@@ -41,6 +41,25 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // cuando estemos sobre una plataforma
+        //pasaremos a ser hijo de esta, para que cuando ella
+        // se mueva, nos lleve con ella
+        if(collision.gameObject.CompareTag("Platform"))
+        {
+            transform.parent = collision.transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Platform"))
+        {
+            transform.parent = null;
+        }
+    }
+
     public void DealDamage()
     {
         if(invicibleCounter <= 0 )

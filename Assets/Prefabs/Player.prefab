@@ -273,7 +273,7 @@ MonoBehaviour:
   groundCheckPoint: {fileID: 5228139513832466413}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   knockBackLength: 0.25
   knockBackForce: 2
   stopInput: 0
