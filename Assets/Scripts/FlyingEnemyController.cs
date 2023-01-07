@@ -59,8 +59,6 @@ public class FlyingEnemyController : MonoBehaviour
             }
         }
 
-
-
         FlipController();
     }
 
