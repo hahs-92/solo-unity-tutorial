@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossTankController : MonoBehaviour
 {
 
-    public enum BossStates {  SHOOTING, HURT, MOVING};
+    public enum BossStates {  SHOOTING, HURT, MOVING, ENDED};
     public BossStates currentStates;
     public Transform theBoss;
     public Animator anim;
@@ -14,7 +14,7 @@ public class BossTankController : MonoBehaviour
     public GameObject mine;
     public Transform minePoint;
     private float mineCounter;
-    public float betweenMines;
+    public float timeBetweenMines;
     public float moveSpeed;
 
     [Header("Points")]
@@ -31,6 +31,14 @@ public class BossTankController : MonoBehaviour
     public GameObject hitBoss;
     private float hurtCounter;
     public float hurtTime;
+
+    [Header("Health")]
+    public GameObject explotion, winPlatform;
+    private bool isDefeated;
+    public float shotSpeedUp, mineSpeedUp;
+    public int health = 5;
+    
+
 
     void Start()
     {
@@ -61,6 +69,15 @@ public class BossTankController : MonoBehaviour
                     {
                         currentStates = BossStates.MOVING;
                         mineCounter = 0;
+
+                        if(isDefeated)
+                        {
+                            theBoss.gameObject.SetActive(false);
+                            Instantiate(explotion, theBoss.position, theBoss.rotation);
+                            AudioManager.instance.StopBossMusic();
+                            currentStates = BossStates.ENDED;
+                            winPlatform.SetActive(true);
+                        }
                     }
                 }
                 break;
@@ -91,7 +108,7 @@ public class BossTankController : MonoBehaviour
                 mineCounter -= Time.deltaTime;
                 if(mineCounter <= 0)
                 {
-                    mineCounter = betweenMines;
+                    mineCounter = timeBetweenMines;
                     Instantiate(mine, mine.transform.position, mine.transform.rotation);
                 }
                 break;
@@ -105,12 +122,31 @@ public class BossTankController : MonoBehaviour
         hurtCounter = hurtTime;
 
         anim.SetTrigger("Hit");
+        BossTankMine[] mines = FindObjectsOfType<BossTankMine>();
+
+        if(mines.Length > 0)
+        {
+            foreach(BossTankMine foundMine in mines)
+            {
+                foundMine.Explode();
+            }
+        }
+
+        health--;
+        if(health <= 0)
+        {
+            isDefeated = true;
+        } else
+        {
+            timeBetweenShots /= shotSpeedUp;
+            timeBetweenMines /= mineSpeedUp;
+        }
     }
 
     private void EndMovement()
     {
         currentStates = BossStates.SHOOTING;
-        shotCounter = timeBetweenShots;
+        shotCounter = 0f;
         anim.SetTrigger("StopMoving");
         hitBoss.SetActive(true); 
     }

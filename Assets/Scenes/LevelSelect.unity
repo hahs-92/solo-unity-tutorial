@@ -2335,7 +2335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7165026902664337280, guid: cf986af010a2b414fb664ad5aaac68b4, type: 3}
       propertyPath: levelToLoad
-      value: SampleScene
+      value: 1-Box
       objectReference: {fileID: 0}
     - target: {fileID: 7165026902664337280, guid: cf986af010a2b414fb664ad5aaac68b4, type: 3}
       propertyPath: levelToCheck
